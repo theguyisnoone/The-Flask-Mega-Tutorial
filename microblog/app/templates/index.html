@@ -1,0 +1,20 @@
+<html>
+    <head>
+      {%if title%}
+      <title>{{title}}-lee</title>
+      {%else%}
+      <title>WELCOME to leeblog</title>
+      {%endif%}
+    </head>
+
+    <body>
+    {%extends "base.html"%}
+    {%block content%}
+      <h1>hello,{{user.username}}!</h1>
+    {% for post in posts %}  <!--dont forget to send posts-->
+    <div><p>{{post.author.username}}says:<b>[{post.body}]</b></p></div>
+    {% endfor %}
+    {%endblock%}
+    </body>
+
+</html>

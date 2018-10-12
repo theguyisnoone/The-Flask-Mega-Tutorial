@@ -1,6 +1,6 @@
 from flask  import Flask
 #first one is flask package the second one is Class Flask
-from  config import Config
+from config import Config
 app=Flask(__name__)
 #__name__：python预先设置的模块 表示当前调用它的模块的名字
 #passing __name__ is almost always going to configure Flask in the correct way.

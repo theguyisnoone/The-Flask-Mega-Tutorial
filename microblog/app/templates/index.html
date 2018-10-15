@@ -10,7 +10,8 @@
     <body>
     {%extends "base.html"%}
     {%block content%}
-      <h1>hello,{{user.username}}!</h1>
+    <!--用current_user代替了原来的user-->
+      <h1>Hi,{{current_user.username}}!</h1>
     {% for post in posts %}  <!--dont forget to send posts-->
     <div><p>{{post.author.username}}says:<b>{{post.body}}</b></p></div>
     {% endfor %}

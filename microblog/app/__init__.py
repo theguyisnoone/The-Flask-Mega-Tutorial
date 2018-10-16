@@ -3,7 +3,6 @@ from flask  import Flask
 from config import Config
 #sql
 from flask_sqlalchemy import SQLAlchemy
-#数据库的迁移
 from flask_migrate import Migrate
 #登录模块
 from flask_login import LoginManager

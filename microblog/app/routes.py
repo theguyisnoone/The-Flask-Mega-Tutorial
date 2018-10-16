@@ -42,7 +42,7 @@ def login():
         #next
         next_page=request.args.get('next')
         if  not next_page or url_parse(next_page).netloc != '':#不含next/绝对路径
-             next_page =url('index')
+             next_page =url_for('index')
         return redirect(next_page)
 
     return render_template('login.html',title='Sign In',form=form)
@@ -52,15 +52,16 @@ def logout():
     logout_user()
     return  redirect(url_for('index'))
 
-@app.route('/register', method=['GET','POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
-    if form.validate_on_submit():##add
-        user=User(username=form.username.data,email=form.email.data)
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash('success')
+        flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
-    return render_template('register.html', title='Register',form=form)
+    return render_template('register.html', title='Register', form=form)

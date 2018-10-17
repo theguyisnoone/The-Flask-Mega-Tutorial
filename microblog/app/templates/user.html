@@ -8,7 +8,7 @@
    {%if user.about_me%}<p>{{user.about_me}}</p>{%endif%}<!--只在允许查看时才能看-->
    {%if user.last_seen%}<p>Last seen on:{{user.last_seen}}</p>{%endif%}
     {%if user== current_user%}
-    <p><a href="{{url_for('edit_profile')}}">Edit your profile</a></p>
+    <p><a href="{{url_for('edit_profile')}}">Edit your profile</a></p><!--修改个人信息的超链接-->
     {%endif%}
  </td>
 </tr>

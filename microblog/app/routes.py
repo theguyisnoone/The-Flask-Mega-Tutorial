@@ -92,6 +92,7 @@ def before_request():
         #可以写add  但是没必要
         db.session.commit()#提交到数据库
 
+#edit profile
 @app.route('/edit_profile', methods=['GET','POST'])
 @login_required
 def edit_profile():
@@ -105,4 +106,4 @@ def edit_profile():
     elif request.method=='GET':
         form.username.data =current_user.username
         form.about_me.data=current_user.about_me
-    return  render_template('edit_profile.html', title='Edit Profile',form=form)    
+    return  render_template('edit_profile.html', title='Edit Profile',form=form)

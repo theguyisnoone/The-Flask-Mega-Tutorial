@@ -14,7 +14,7 @@ from  werkzeug.urls import  url_parse
 @app.route('/')#like springboot 内 的XXXMapping
 
 @app.route('/index')
-@login_required
+@login_required#拦截 没登录不能进去
 def index():
     user={'username':'Lee'}
     posts=[
@@ -40,7 +40,7 @@ def login():
             return redirect(url_for('login'))
         login_user(user,remember=form.remember_me.data)
         #next
-        next_page=request.args.get('next')
+        next_page=request.args.get('next')#！！
         if  not next_page or url_parse(next_page).netloc != '':#不含next/绝对路径
              next_page =url_for('index')
         return redirect(next_page)
@@ -65,3 +65,14 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
+
+@app.route('/user/<username>')
+@login_required
+def user(username):
+    user=User.query.filter_by(username=username).first_or_404()
+    posts=[
+    {'author':user,'body':'Test post #1'},
+    {'author':user,'body':'Test post #2'}
+    ]
+    return  render_template('user.html',user=user,posts=posts)

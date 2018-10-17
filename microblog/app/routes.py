@@ -10,6 +10,10 @@ from flask_login import logout_user
 #next
 from flask import request
 from  werkzeug.urls import  url_parse
+#for last_seen
+from datetime import  datetime
+#导入个人信息编辑  10/17
+from app.forms import EditProfileForm
 
 @app.route('/')#like springboot 内 的XXXMapping
 
@@ -76,3 +80,29 @@ def user(username):
     {'author':user,'body':'Test post #2'}
     ]
     return  render_template('user.html',user=user,posts=posts)
+
+#last seen
+@app.before_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.last_seen=datetime.utcnow()#utc 标准时区时间
+        #为什么没有用add()  因为引用了current_user
+        ''' Flask-Login will invoke the user loader callback function, which will run a database query
+        that will put the target user in the database session'''
+        #可以写add  但是没必要
+        db.session.commit()#提交到数据库
+
+@app.route('/edit_profile', methods=['GET','POST'])
+@login_required
+def edit_profile():
+    form =EditProfileForm()
+    if form.validate_on_submit():
+        current_user.username=form.username.data
+        current_user.about_me=form.about_me.data
+        db.session.commit()
+        flash('Your changes have been saved.')
+        return redirect(url_for('edit_profile'))
+    elif request.method=='GET':
+        form.username.data =current_user.username
+        form.about_me.data=current_user.about_me
+    return  render_template('edit_profile.html', title='Edit Profile',form=form)    

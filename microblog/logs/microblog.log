@@ -1,0 +1,24 @@
+2018-10-18 17:21:47,612 INFO: Microblog startup [in C:\Users\95325\documents\GitHub\The-Flask-Mega-Tutorial\microblog\app\__init__.py:48]
+2018-10-18 17:21:53,157 ERROR: Exception on /edit_profile [GET] [in c:\users\95325\documents\github\the-flask-mega-tutorial\microblog\venv\lib\site-packages\flask\app.py:1761]
+Traceback (most recent call last):
+  File "c:\users\95325\documents\github\the-flask-mega-tutorial\microblog\venv\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\95325\documents\github\the-flask-mega-tutorial\microblog\venv\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\95325\documents\github\the-flask-mega-tutorial\microblog\venv\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\95325\documents\github\the-flask-mega-tutorial\microblog\venv\lib\site-packages\flask\_compat.py", line 35, in reraise
+    raise value
+  File "c:\users\95325\documents\github\the-flask-mega-tutorial\microblog\venv\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\95325\documents\github\the-flask-mega-tutorial\microblog\venv\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\95325\documents\github\the-flask-mega-tutorial\microblog\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\95325\documents\GitHub\The-Flask-Mega-Tutorial\microblog\app\routes.py", line 99, in edit_profile
+    form =EditProfileForm()
+  File "c:\users\95325\documents\github\the-flask-mega-tutorial\microblog\venv\lib\site-packages\wtforms\form.py", line 212, in __call__
+    return type.__call__(cls, *args, **kwargs)
+TypeError: __init__() missing 1 required positional argument: 'original_username'
+2018-10-18 17:22:55,474 INFO: Microblog startup [in C:\Users\95325\documents\GitHub\The-Flask-Mega-Tutorial\microblog\app\__init__.py:48]
+2018-10-18 17:27:04,722 INFO: Microblog startup [in C:\Users\95325\documents\GitHub\The-Flask-Mega-Tutorial\microblog\app\__init__.py:48]

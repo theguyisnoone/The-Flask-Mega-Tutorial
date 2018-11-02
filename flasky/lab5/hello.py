@@ -6,6 +6,8 @@ from flask_moment import Moment
 #SQL
 import os
 from flask_sqlalchemy import SQLAlchemy
+#database backup
+from flask_migrate import Migrate
 
 #form
 from flask_wtf import FlaskForm
@@ -21,9 +23,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] =\
     'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-
-
 db=SQLAlchemy(app)
+migrate = Migrate(app,db)
+
 bootstrap = Bootstrap(app)
 moment = Moment(app)
 
@@ -56,7 +58,7 @@ class NameForm(FlaskForm):
 #set shell
 @app.shell_context_processor
 def  make_shell_context():
-    return dict(db=db,User=User,Role=Role)    
+    return dict(db=db,User=User,Role=Role)
 
 
 #customized error

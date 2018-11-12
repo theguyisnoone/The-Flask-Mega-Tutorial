@@ -24,10 +24,10 @@ app.config['MAIL_USE_SSL'] =True
 # app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
 app.config['MAIL_USERNAME'] = '953258481@qq.com'
 app.config['MAIL_PASSWORD'] = 'wooajtqszqspbfcc'
-app.config['FLASKY_MAIL_SUBJECT_PREFIX'] = '[Flasky]'
-app.config['FLASKY_MAIL_SENDER'] = '953258481@qq.com'
+# app.config['FLASKY_MAIL_SUBJECT_PREFIX'] = '[Flasky]'
+# app.config['FLASKY_MAIL_SENDER'] = '953258481@qq.com'
 # app.config['FLASKY_ADMIN'] = os.environ.get('FLASKY_ADMIN')
-app.config['FLASKY_ADMIN'] = '15821629082@qq.com'
+# app.config['FLASKY_ADMIN'] = '15821629082@qq.com'
 bootstrap = Bootstrap(app)
 moment = Moment(app)
 db = SQLAlchemy(app)
@@ -55,12 +55,12 @@ class User(db.Model):
         return '<User %r>' % self.username
 
 
-def send_email(to, subject, template, **kwargs):
-    msg = Message(app.config['FLASKY_MAIL_SUBJECT_PREFIX'] + ' ' + subject,
-                  sender=app.config['FLASKY_MAIL_SENDER'], recipients=[to])
-    msg.body = render_template(template + '.txt', **kwargs)
-    msg.html = render_template(template + '.html', **kwargs)
-    mail.send(msg)
+# def send_email(to, subject, template, **kwargs):
+#     msg = Message(app.config['FLASKY_MAIL_SUBJECT_PREFIX'] + ' ' + subject,
+#                   sender=app.config['FLASKY_MAIL_SENDER'], recipients=[to])
+#     msg.body = render_template(template + '.txt', **kwargs)
+#     msg.html = render_template(template + '.html', **kwargs)
+#     mail.send(msg)
 
 
 class NameForm(FlaskForm):

@@ -22,10 +22,10 @@ def send_async_email(app,msg):
         mail.send(msg)
 
 def SendMail():
-    msg = Message('This is a mail from QQ SMTP HOST',sender='953258481@qq.com',\
+    msg = Message('Test',sender='953258481@qq.com',\
                         recipients=["15821629082@163.com"])
     msg.body = 'From QQ'
-    msg.html = '<b>Halo the world!</b>'
+    msg.html = '<b>Hola the world!</b>'
     thr = Thread(target=send_async_email,args=[app,msg])
     thr.start()
     return 'ok'

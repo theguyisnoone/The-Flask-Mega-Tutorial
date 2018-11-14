@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_mail import Mail, Message
 from threading import Thread
-#使用线程编程实现异步发送，否则服务就会卡主，如果是web的话在发送完成之前网页是loading状态
+import os
 
 app = Flask(__name__)
 app.config.update(dict(
@@ -10,8 +10,10 @@ app.config.update(dict(
     MAIL_PORT = 465,
     MAIL_USE_TLS = False,
     MAIL_USE_SSL = True,
-    MAIL_USERNAME = '953258481@qq.com',
-    MAIL_PASSWORD = 'wooajtqszqspbfcc',#看下面第一张图
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME'),
+    MAIL_PASSWORD=os.environ.get('MAIL_PASSWORD')
+    # MAIL_USERNAME='953258481@qq.com',
+    # MAIL_PASSWORD='wooajtqszqspbfcc'
 
 ))
 

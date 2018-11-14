@@ -6,16 +6,12 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
     MAIL_SERVER = os.environ.get('MAIL_SERVER', 'smtp.qq.com')
     MAIL_PORT = int(os.environ.get('MAIL_PORT', '465'))
-    MAIL_USE_TLS = False
-    MAIL_USE_SSl = True
+    MAIL_USE_SSL=True
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-    # MAIL_USERNAME='953258481@qq.com',
-    # MAIL_PASSWORD='wooajtqszqspbfcc'
     FLASKY_MAIL_SUBJECT_PREFIX = '[Flasky]'
     FLASKY_MAIL_SENDER = '953258481@qq.com'
     FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN')
-    # FLASKY_ADMIN = '15821629082@163.com'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     @staticmethod

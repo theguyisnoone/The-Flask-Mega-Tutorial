@@ -4,7 +4,7 @@ from flask_login import login_user, logout_user, login_required, \
 from . import auth
 from .. import db
 from ..models import User
-from ..email import send_email
+from ..email import send_email#
 from .forms import LoginForm, RegistrationForm, ChangePasswordForm,\
     PasswordResetRequestForm, PasswordResetForm, ChangeEmailForm
 
@@ -59,6 +59,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         token = user.generate_confirmation_token()
+        #发邮箱
         send_email(user.email, 'Confirm Your Account',
                    'auth/email/confirm', user=user, token=token)
         flash('A confirmation email has been sent to you by email.')
@@ -81,6 +82,7 @@ def confirm(token):
 
 @auth.route('/confirm')
 @login_required
+#重新确认
 def resend_confirmation():
     token = current_user.generate_confirmation_token()
     send_email(current_user.email, 'Confirm Your Account',
@@ -88,7 +90,7 @@ def resend_confirmation():
     flash('A new confirmation email has been sent to you by email.')
     return redirect(url_for('main.index'))
 
-
+#换密码
 @auth.route('/change-password', methods=['GET', 'POST'])
 @login_required
 def change_password():
@@ -147,7 +149,7 @@ def change_email_request():
             new_email = form.email.data
             token = current_user.generate_email_change_token(new_email)
             send_email(new_email, 'Confirm your email address',
-                       'auth/email/change_email',
+        ·               'auth/email/change_email',
                        user=current_user, token=token)
             flash('An email with instructions to confirm your new email '
                   'address has been sent to you.')
